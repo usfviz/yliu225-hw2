@@ -48,6 +48,8 @@ ui <- fluidPage(
 )
 
 
+
+
 server <- function(input, output) {
   
   df_year <- reactive({tmp = subset(df, year == input$year)})
