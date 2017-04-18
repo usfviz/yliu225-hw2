@@ -31,6 +31,11 @@ region <- region[,c(1,2)]
 df<- merge(df, region, by=c("Country.Code"))
 df <- df[,c(1,2,4,6,7,8,9)]
 regions <- levels(as.factor(df$Region))
+FUN_2 <- function(num) {num/900000}
+df$population <- lapply(df$population, FUN)
+
+
+
 
 
 ui <- fluidPage(
@@ -67,10 +72,10 @@ server <- function(input, output) {
   
   df_year %>% 
     ggvis(~fertility_rate, ~life_expectancy) %>%
-    add_tooltip(all_values, "hover") %>%
     group_by(Region) %>% 
-    layer_points(fill = ~Region,size := ~population/1000000 + 75) %>%
-    layer_points(data = rg,fill = "black",size := ~population/1000000 + 75) %>%
+    layer_points(fill = ~Region,size := ~population) %>%
+    layer_points(data = rg,fill = "black",size := ~population) %>%
+    add_tooltip(all_values, "hover") %>%
     bind_shiny("ggvis", "ggvis_ui")
   
 }
