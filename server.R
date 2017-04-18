@@ -33,6 +33,20 @@ df <- df[,c(1,2,4,6,7,8,9)]
 regions <- levels(as.factor(df$Region))
 
 
+ui <- fluidPage(
+  headerPanel('Life Expectancy and Fertility Rate'),
+  sidebarPanel(
+    sliderInput("year", "Year", 1960,2016,1),
+    
+    checkboxGroupInput("rg","Regions",choices = regions)
+    
+  ),
+  mainPanel(
+    uiOutput("ggvis_ui"),
+    ggvisOutput("ggvis")
+  )
+)
+
 
 server <- function(input, output) {
   
