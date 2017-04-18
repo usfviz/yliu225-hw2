@@ -30,8 +30,8 @@ region <- region[,c(1,2)]
 df<- merge(df, region, by=c("Country.Code"))
 df <- df[,c(1,2,4,6,7,8,9)]
 regions <- levels(as.factor(df$Region))
-FUN_2 <- function(num) {num/900000}
-df$population <- lapply(df$population, FUN_2)
+#FUN_2 <- function(num) {num/900000}
+#df$population <- lapply(df$population, FUN_2)
 
 
 
