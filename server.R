@@ -72,10 +72,10 @@ server <- function(input, output) {
   
   df_year %>% 
     ggvis(~fertility_rate, ~life_expectancy) %>%
+    add_tooltip(all_values, "hover") %>%
     group_by(Region) %>% 
     layer_points(fill = ~Region,size := ~population) %>%
     layer_points(data = rg,fill = "black",size := ~population) %>%
-    add_tooltip(all_values, "hover") %>%
     bind_shiny("ggvis", "ggvis_ui")
   
 }
